@@ -1,15 +1,28 @@
 class Ship {
-    constructor (length) {
+    constructor (length, isVertical) {
         this.length = length;
-        this.hits = 0;
+        this.isVertical = isVertical;
+        this.hits = Array(length).fill(false);
+        this.row = null;
+        this.col = null;
     }
 
-    hit () {
-        this.hits++;
+    setPosition (row, col) {
+        this.row = row;
+        this.col = col;
+    }
+
+    hit (square) {
+        if (!this.hits[square]) {
+            this.hits[square] = true;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     isSunk () {
-        return this.hits === this.length;
+        return this.hits.every(hit => hit);
     }
 }
 
