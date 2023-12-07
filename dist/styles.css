@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', 'sans-serif';
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+h1 {
+    text-align: center;
+    margin: 50px 0px;
+    font-size: 5rem;
+    color: #272932;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Board */
+
+#playerBoard, #computerBoard {
+    border: 5px solid black;
+    border-radius: 7px;
+    box-shadow: 7px 7px #cbcdcd;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.cell {
+    flex: 1;
+    border: 1px #aeafaf solid;
+    cursor: pointer;
+}
