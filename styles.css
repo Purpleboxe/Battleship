@@ -45,3 +45,11 @@ h1 {
     border: 1px #aeafaf solid;
     cursor: pointer;
 }
+
+.cell.hit {
+    background-color: #F25F5C;
+}
+
+.cell.miss {
+    background-color: #70C1B3;
+}
