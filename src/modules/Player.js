@@ -12,6 +12,7 @@ class Player {
 
 class Computer extends Player {
     constructor () {
+        super();
         this.previousAttacks = [];
     }
 

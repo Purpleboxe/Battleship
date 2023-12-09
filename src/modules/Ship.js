@@ -21,6 +21,10 @@ class Ship {
         }
     }
 
+    isHit (index) {
+        return this.hits[index] === true;
+    }
+
     isSunk () {
         return this.hits.every(hit => hit);
     }
