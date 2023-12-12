@@ -21,8 +21,12 @@ class Ship {
         }
     }
 
-    isHit (index) {
-        return this.hits[index] === true;
+    isHit (x, y) {
+        if (this.isVertical) {
+            return this.hits[x - this.row];
+        } else {
+            return this.hits[y - this.col];
+        }
     }
 
     isSunk () {
