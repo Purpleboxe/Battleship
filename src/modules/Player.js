@@ -26,7 +26,7 @@ class Computer extends Player {
 
         this.previousAttacks.push({row, col});
 
-        return this.attack(enemyGameboard, row, col);
+        this.attack(enemyGameboard, row, col);
     }
 }
 

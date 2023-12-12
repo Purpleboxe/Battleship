@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Oswald', 'sans-serif';
+    font-family: 'Ubuntu', 'sans-serif';
 }
 
 body {
@@ -13,7 +13,7 @@ body {
 h1 {
     text-align: center;
     margin: 50px 0px;
-    font-size: 5rem;
+    font-size: 4rem;
     color: #272932;
 }
 
@@ -25,8 +25,7 @@ h1 {
 /* Board */
 
 #playerBoard, #computerBoard {
-    border: 5px solid black;
-    border-radius: 7px;
+    border: 1px solid #2F4858;
     box-shadow: 7px 7px #cbcdcd;
     width: 500px;
     height: 500px;
@@ -42,14 +41,19 @@ h1 {
 
 .cell {
     flex: 1;
-    border: 1px #aeafaf solid;
-    cursor: pointer;
+    border: 1px #2F4858 solid;
+    cursor: crosshair;
+    transition: 0.05s ease-in-out;
+}
+
+.cell:hover {
+    background-color: rgb(219, 219, 219);
 }
 
 .cell.hit {
-    background-color: #F25F5C;
+    background-color: #ee6055;
 }
 
 .cell.miss {
-    background-color: #70C1B3;
+    background-color: #aaf683;
 }
