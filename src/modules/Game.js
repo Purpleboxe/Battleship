@@ -17,6 +17,12 @@ function Game () {
 function runGame (player, computer) {
     const playerContainer = document.getElementById('playerBoard');
     const computerContainer = document.getElementById('computerBoard');
+    const gameOver = document.getElementById('gameOver');
+    const overlay = document.querySelector('.overlay');
+    const restart = document.querySelector('.restart');
+    let gameEnded = false;
+    const ship = new Ship(3, true);
+    const ship2 = new Ship(5, false);
 
     playerContainer.innerHTML = '';
     computerContainer.innerHTML = '';
@@ -25,6 +31,10 @@ function runGame (player, computer) {
     renderBoard(computerContainer, computer);
 
     const playerMove = (e) => {
+        if (gameEnded) {
+            return;
+        }
+
         const cell = e.target;
         
         const hit = player.attack(computer.gameboard, cell.id[0], cell.id[1]);
@@ -32,10 +42,40 @@ function runGame (player, computer) {
         if (hit) {
             renderBoard (computerContainer, computer);
 
+            if (endGame()) {
+                gameEnded = true;
+                return;
+            }
+
             computer.makeRandomAttack(player.gameboard);
         
             renderBoard (playerContainer, player);
+            
+            if (endGame()) {
+                gameEnded = true;
+                return;
+            }
         }
+    }
+
+    const endGame = () => {
+        const win = document.querySelector('.win');
+
+        if (computer.gameboard.allShipsSunk()) {
+            computerContainer.removeEventListener('click', playerMove);
+            win.innerText = 'You Win!';
+            gameOver.classList.add('active');
+            overlay.classList.add('active');
+            return true;
+        } else if (player.gameboard.allShipsSunk()) {
+            computerContainer.removeEventListener('click', playerMove);
+            win.innerText = 'You Lose!';
+            gameOver.classList.add('active');
+            overlay.classList.add('active');
+            return true;
+        }
+
+        return false;
     }
 
     computerContainer.addEventListener('click', playerMove);
