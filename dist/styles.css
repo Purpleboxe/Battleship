@@ -6,27 +6,36 @@
     font-family: 'Ubuntu', 'sans-serif';
 }
 
+:root {
+    --dark: #0b132b;
+    --dark2: #1c2541;
+    --dark3: #3a506b;
+    --dark4: #22223b;
+    --light: #8d99ae;
+}
+
 body {
-    background-color: whitesmoke;
+    background-color: var(--dark);
 }
 
 h1 {
     text-align: center;
     margin: 50px 0px;
-    font-size: 4rem;
-    color: #272932;
+    font-size: 3rem;
+    color: white;
 }
 
 .container {
     display: flex;
     justify-content: space-evenly;
+    padding: 4rem
 }
 
 /* Board */
 
 #playerBoard, #computerBoard {
-    border: 1px solid #2F4858;
-    box-shadow: 7px 7px #cbcdcd;
+    border: 1px solid var(--light);
+    box-shadow: 7px 7px var(--dark4);
     width: 500px;
     height: 500px;
     display: flex;
@@ -41,13 +50,13 @@ h1 {
 
 .cell {
     flex: 1;
-    border: 1px #2F4858 solid;
+    border: 1px var(--light) solid;
     cursor: crosshair;
-    transition: 0.05s ease-in-out;
+    transition: 0.1s ease-in-out;
 }
 
 .cell:hover {
-    background-color: rgb(219, 219, 219);
+    background-color: var(--dark3);
 }
 
 .cell.hit {
@@ -56,4 +65,60 @@ h1 {
 
 .cell.miss {
     background-color: #aaf683;
+}
+
+/* Overlay */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+#gameOver {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 1;
+    width: 300px;
+    padding: 1.2rem;
+    background-color: var(--dark);
+    text-align: center;
+    border-radius: 10px;
+    transition: 0.1s;
+}
+
+#gameOver.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#gameOver div {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.restart {
+    background-color: var(--dark2);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+}
+
+.restart:hover {
+    color: var(--dark);
+    background-color: var(--light);
 }
