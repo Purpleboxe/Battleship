@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Ubuntu&display=swap');
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Ubuntu', 'sans-serif';
+    font-family: 'Manrope', 'Ubuntu', 'sans-serif';
 }
 
 :root {
@@ -12,6 +12,7 @@
     --dark3: #3a506b;
     --dark4: #22223b;
     --light: #8d99ae;
+    --show: #67AAF9;
 }
 
 body {
@@ -56,6 +57,10 @@ h1 {
 }
 
 .cell:hover {
+    background-color: var(--dark2);
+}
+
+.cell:active {
     background-color: var(--dark3);
 }
 
@@ -67,6 +72,10 @@ h1 {
     background-color: #aaf683;
 }
 
+.cell.show {
+    background-color: var(--show);
+}
+
 /* Overlay */
 
 .overlay {
@@ -75,13 +84,44 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: none;
+    background-color: rgba(0, 0, 0, 0);
+    transform: scale(0);
+    transition: background-color 0.3s ease-in-out;
 }
 
 .overlay.active {
-    display: block;
+    background-color: rgba(0, 0, 1, 0.8);
+    transform: scale(1);
 }
+
+.text {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.restart, .rotate {
+    background-color: var(--dark2);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+}
+
+.restart:hover, .rotate:hover {
+    color: var(--dark);
+    background-color: var(--light);
+}
+
+.restart:active, .rotate:active {
+    background-color: var(--dark3);
+}
+
+/* Game Over */
 
 #gameOver {
     position: fixed;
@@ -94,31 +134,56 @@ h1 {
     background-color: var(--dark);
     text-align: center;
     border-radius: 10px;
-    transition: 0.1s;
+    transition: 0.1s ease-in-out;
 }
 
 #gameOver.active {
     transform: translate(-50%, -50%) scale(1);
 }
 
-#gameOver div {
-    color: white;
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
+/* Place Ship */
 
-.restart {
-    background-color: var(--dark2);
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
+#placeShip {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 1;
+    width: 500px;
+    padding: 3rem 1.2rem;
+    background-color: var(--dark);
+    text-align: center;
     border-radius: 10px;
-    cursor: pointer;
     transition: 0.1s ease-in-out;
 }
 
-.restart:hover {
-    color: var(--dark);
-    background-color: var(--light);
+#placeShip.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#placeBoard {
+    border: 1px solid var(--light);
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin: 3rem 0;
+}
+
+.preview {
+    flex: 1;
+    border: 1px var(--light) solid;
+    cursor: crosshair;
+    transition: 0.1s ease-in-out;
+}
+
+.preview.active {
+    background-color: #67abf9a8;
+}
+
+.preview.placed {
+    background-color: var(--show);
 }
