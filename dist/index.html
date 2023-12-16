@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battleship</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/boat.png">
 </head>
 <body>
     <h1>Battleship</h1>
@@ -15,10 +16,16 @@
     </div>
     
     <div id="gameOver">
-        
-        <div class="win">You Win!</div>
+        <div class="win text">You Win!</div>
         <button class="restart">Restart</button>
     </div>
+
+    <div id="placeShip">
+        <div class="text">Place your ships!</div>
+        <div id="placeBoard"></div>
+        <button class="rotate">Rotate</button>
+    </div>
+
     <div class="overlay"></div>
 
     <script src="main.js"></script>
