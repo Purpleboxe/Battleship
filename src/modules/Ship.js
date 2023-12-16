@@ -13,7 +13,7 @@ class Ship {
   }
 
   hit(square) {
-    if (!this.hits[square]) {
+    if (this.hits[square] === false && !this.isSunk()) {
       this.hits[square] = true;
       return true;
     }
