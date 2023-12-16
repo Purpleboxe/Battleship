@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const Gameboard = require('../Gameboard');
 const Ship = require('../Ship');
 
@@ -35,20 +36,20 @@ describe('Gameboard', () => {
   test('receiving a successful attack', () => {
     const gameboard = new Gameboard();
     const ship = new Ship(3, true);
-  
+
     gameboard.placeShip(ship, 2, 4);
-    
+
     gameboard.receiveAttack(3, 4);
-    
+
     expect(ship.hits).toEqual([false, true, false]);
   });
 
   test('receiving a missed attack', () => {
     const gameboard = new Gameboard();
-    
+
     gameboard.receiveAttack(3, 4);
 
-    expect(gameboard.missedAttacks).toEqual([{row: 3, col: 4}]);
+    expect(gameboard.missedAttacks).toEqual([{ row: 3, col: 4 }]);
   });
 
   test('checking if all ships are sunk', () => {
@@ -71,7 +72,7 @@ describe('Gameboard', () => {
     gameboard.receiveAttack(6, 9);
     gameboard.receiveAttack(8, 9);
 
-    expect(gameboard.missedAttacks).toEqual([{row: 8, col: 9}])
+    expect(gameboard.missedAttacks).toEqual([{ row: 8, col: 9 }]);
     expect(gameboard.allShipsSunk()).toBe(true);
   });
 });

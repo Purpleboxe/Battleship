@@ -1,33 +1,28 @@
+/* eslint-disable prefer-destructuring */
 const Gameboard = require('./Gameboard');
+const Ship = require('./Ship');
 
 class Player {
-    constructor () {
-        this.gameboard = new Gameboard();
-    }
+  constructor() {
+    this.gameboard = new Gameboard();
+    this.shipsToPlace = [new Ship(5, false), new Ship(4, false),
+      new Ship(3, false), new Ship(3, false), new Ship(2, false)];
+    this.currentShip = this.shipsToPlace[0];
+  }
 
-    attack (enemyGameboard, row, col) {
-        return enemyGameboard.receiveAttack(row, col);
-    }
+  nextShipToPlace() {
+    this.shipsToPlace.shift();
+    this.currentShip = this.shipsToPlace[0];
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  attack(enemyGameboard, row, col) {
+    return enemyGameboard.receiveAttack(row, col);
+  }
+
+  reset() {
+    this.gameboard = new Gameboard();
+  }
 }
 
-class Computer extends Player {
-    constructor () {
-        super();
-        this.previousAttacks = [];
-    }
-
-    makeRandomAttack (enemyGameboard) {
-        let row, col;
-
-        do {
-            row = Math.floor(Math.random() * 10);
-            col = Math.floor(Math.random() * 10);
-        } while (this.previousAttacks.some(attack => attack.row === row && attack.col === col));
-
-        this.previousAttacks.push({row, col});
-
-        this.attack(enemyGameboard, row, col);
-    }
-}
-
-module.exports = {Player, Computer};
+module.exports = Player;
