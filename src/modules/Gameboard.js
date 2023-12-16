@@ -63,30 +63,36 @@ class Gameboard {
   receiveAttack(row, col) {
     // Checks if cell has been hit already
     if (this.grid[row][col] === null
-        && this.missedAttacks.some((attack) => attack.row === row && attack.col === col)) {
+          && this.missedAttacks.some((attack) => attack.row === row && attack.col === col)) {
       return false;
+    }
+
+    if (this.grid[row][col] === null) {
+      this.missedAttacks.push({ row, col });
+      return true;
     }
 
     const ship = this.grid[row][col];
 
-    if (this.grid[row][col] !== null && !ship.isSunk()) {
-      let square;
+    if (!ship.isSunk()) {
+      if (this.grid[row][col] !== null) {
+        let square;
 
-      if (ship.isVertical === true) {
-        square = row - ship.row;
-      } else {
-        square = col - ship.col;
+        if (ship.isVertical === true) {
+          square = row - ship.row;
+        } else {
+          square = col - ship.col;
+        }
+
+        const hit = ship.hit(square);
+
+        if (hit) {
+          return true;
+        }
       }
-
-      const hit = ship.hit(square);
-
-      if (hit) {
-        return true;
-      }
-      return false;
     }
-    this.missedAttacks.push({ row, col });
-    return true;
+
+    return false;
   }
 
   allShipsSunk() {
