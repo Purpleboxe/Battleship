@@ -136,12 +136,14 @@ function renderBoard(container, player, show) {
 
       const ship = player.gameboard.grid[x][y];
 
-      if (ship && ship.isHit(x, y)) {
+      if (ship && ship.isSunk()) {
+        cell.classList.add('sunk');
+      } else if (ship && ship.isHit(x, y)) {
         cell.classList.add('hit');
       } else if (player.gameboard.grid[x][y] === null
-                  && player.gameboard.missedAttacks
-                    // eslint-disable-next-line eqeqeq
-                    .some((attack) => attack.row == x && attack.col == y)) {
+                    && player.gameboard.missedAttacks
+                      // eslint-disable-next-line eqeqeq
+                      .some((attack) => attack.row == x && attack.col == y)) {
         cell.classList.add('miss');
       } else if (ship && show) {
         cell.classList.add('show');
@@ -169,7 +171,7 @@ function runGame(player, computer) {
   renderBoard(computerContainer, computer);
 
   const endGame = () => {
-    const win = document.querySelector('.win');
+    const verdict = document.querySelector('.verdict');
 
     const resetGame = () => {
       gameOver.classList.remove('active');
@@ -181,13 +183,17 @@ function runGame(player, computer) {
     };
 
     if (computer.gameboard.allShipsSunk()) {
-      win.innerText = 'You Win!';
+      verdict.innerText = 'You Win!';
+      verdict.classList.remove('win', 'lose');
+      verdict.classList.add('win');
       gameOver.classList.add('active');
       overlay.classList.add('active');
       restart.addEventListener('click', resetGame);
       return true;
     } if (player.gameboard.allShipsSunk()) {
-      win.innerText = 'You Lose!';
+      verdict.innerText = 'You Lose!';
+      verdict.classList.remove('win', 'lose');
+      verdict.classList.add('lose');
       gameOver.classList.add('active');
       overlay.classList.add('active');
       restart.addEventListener('click', resetGame);

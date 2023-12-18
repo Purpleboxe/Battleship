@@ -5,8 +5,10 @@ const Ship = require('./Ship');
 class Player {
   constructor() {
     this.gameboard = new Gameboard();
-    this.shipsToPlace = [new Ship(5, false), new Ship(4, false),
-      new Ship(3, false), new Ship(3, false), new Ship(2, false)];
+    this.shipsToPlace = [new Ship(4, false), new Ship(3, false),
+      new Ship(3, false), new Ship(2, false), new Ship(2, false),
+      new Ship(2, false), new Ship(1, false), new Ship(1, false),
+      new Ship(1, false), new Ship(1, false)];
     this.currentShip = this.shipsToPlace[0];
   }
 

@@ -13,6 +13,8 @@
     --dark4: #22223b;
     --light: #8d99ae;
     --show: #67AAF9;
+    --green: #aaf683;
+    --red: #ee6055;
 }
 
 body {
@@ -29,7 +31,14 @@ h1 {
 .container {
     display: flex;
     justify-content: space-evenly;
-    padding: 4rem
+    padding: 0 15rem;
+}
+
+.Player {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
 }
 
 /* Board */
@@ -65,15 +74,19 @@ h1 {
 }
 
 .cell.hit {
-    background-color: #ee6055;
+    background-color: var(--red);
 }
 
 .cell.miss {
-    background-color: #aaf683;
+    background-color: var(--green);
 }
 
 .cell.show {
     background-color: var(--show);
+}
+
+.cell.sunk {
+    background-color: #4E598C;
 }
 
 /* Overlay */
@@ -141,6 +154,14 @@ h1 {
     transform: translate(-50%, -50%) scale(1);
 }
 
+.win {
+    color: var(--green);
+}
+
+.lose {
+    color: var(--red);
+}
+
 /* Place Ship */
 
 #placeShip {
@@ -182,6 +203,7 @@ h1 {
 
 .preview.active {
     background-color: #67abf9a8;
+    border: 1px var(--green) solid;
 }
 
 .preview.placed {

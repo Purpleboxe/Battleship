@@ -15,13 +15,10 @@ class Gameboard {
   placeShip(ship, row, col) {
     if (this.checkShipPlacement(ship, row, col)) {
       ship.setPosition(row, col);
-
-      if (ship.isVertical === true) {
-        for (let i = 0; i < ship.length; i += 1) {
+      for (let i = 0; i < ship.length; i += 1) {
+        if (ship.isVertical) {
           this.grid[row + i][col] = ship;
-        }
-      } else if (ship.isVertical === false) {
-        for (let i = 0; i < ship.length; i += 1) {
+        } else if (!ship.isVertical) {
           this.grid[row][col + i] = ship;
         }
       }
@@ -34,11 +31,11 @@ class Gameboard {
 
   checkShipPlacement(ship, row, col) {
     // Checks if the ship is out of bounds
-    if (ship.isVertical === true) {
+    if (ship.isVertical) {
       if (row + ship.length > 10) {
         return false;
       }
-    } else if (ship.isVertical === false) {
+    } else if (!ship.isVertical) {
       if (col + ship.length > 10) {
         return false;
       }
@@ -46,11 +43,11 @@ class Gameboard {
 
     // Checks if there is a ship in the way
     for (let i = 0; i < ship.length; i += 1) {
-      if (ship.isVertical === true) {
+      if (ship.isVertical) {
         if (this.grid[row + i][col] !== null) {
           return false;
         }
-      } else if (ship.isVertical === false) {
+      } else if (!ship.isVertical) {
         if (this.grid[row][col + i] !== null) {
           return false;
         }
@@ -67,11 +64,13 @@ class Gameboard {
       return false;
     }
 
+    // Adds missed attack if empty cell
     if (this.grid[row][col] === null) {
       this.missedAttacks.push({ row, col });
       return true;
     }
 
+    // Attacks the ship
     const ship = this.grid[row][col];
 
     if (!ship.isSunk()) {
