@@ -94,7 +94,7 @@ class Computer extends Player {
       }
     } else {
       this.attacks = 1;
-      const cheatingProbability = Math.random() < 0.2;
+      const cheatingProbability = Math.random() < 0.1;
 
       // Shhhh this is cheating!
       if (cheatingProbability) {
