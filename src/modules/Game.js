@@ -3,6 +3,7 @@
 /* eslint-disable no-param-reassign */
 const Player = require('./Player');
 const Computer = require('./Computer');
+const Confetti = require('./Confetti');
 
 function placeShips(player, computer) {
   const placeShip = document.getElementById('placeShip');
@@ -196,6 +197,7 @@ function runGame(player, computer) {
       gameOver.classList.add('active');
       overlay.classList.add('active');
       restart.addEventListener('click', resetGame);
+      Confetti();
       return true;
     } if (player.gameboard.allShipsSunk()) {
       verdict.innerText = 'You Lose!';
