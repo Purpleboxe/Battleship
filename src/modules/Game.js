@@ -219,6 +219,8 @@ function runGame(player, computer) {
 
     const hit = player.attack(computer.gameboard, cell.id[0], cell.id[1]);
 
+    cShipCounter.innerHTML = `Ships: ${computer.gameboard.amountOfShipsSunk()}`;
+
     if (hit) {
       renderBoard(computerContainer, computer);
 
@@ -237,7 +239,6 @@ function runGame(player, computer) {
     }
 
     pShipCounter.innerHTML = `Ships: ${player.gameboard.amountOfShipsSunk()}`;
-    cShipCounter.innerHTML = `Ships: ${computer.gameboard.amountOfShipsSunk()}`;
   };
 
   computerContainer.addEventListener('click', playerMove);
