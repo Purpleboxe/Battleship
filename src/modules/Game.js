@@ -162,6 +162,8 @@ function runGame(player, computer) {
   const gameOver = document.getElementById('gameOver');
   const overlay = document.querySelector('.overlay');
   const restart = document.querySelector('.restart');
+  const pShipCounter = document.querySelector('.playerShips');
+  const cShipCounter = document.querySelector('.computerShips');
   let gameEnded = false;
 
   playerContainer.innerHTML = '';
@@ -169,6 +171,9 @@ function runGame(player, computer) {
 
   renderBoard(playerContainer, player, true);
   renderBoard(computerContainer, computer);
+
+  pShipCounter.innerHTML = `Ships: ${player.gameboard.amountOfShipsSunk()}`;
+  cShipCounter.innerHTML = `Ships: ${computer.gameboard.amountOfShipsSunk()}`;
 
   const endGame = () => {
     const verdict = document.querySelector('.verdict');
@@ -178,6 +183,8 @@ function runGame(player, computer) {
       overlay.classList.remove('active');
       playerContainer.innerHTML = '';
       computerContainer.innerHTML = '';
+      pShipCounter.innerHTML = 'Ships: ';
+      cShipCounter.innerHTML = 'Ships: ';
 
       Game();
     };
@@ -228,6 +235,9 @@ function runGame(player, computer) {
         gameEnded = true;
       }
     }
+
+    pShipCounter.innerHTML = `Ships: ${player.gameboard.amountOfShipsSunk()}`;
+    cShipCounter.innerHTML = `Ships: ${computer.gameboard.amountOfShipsSunk()}`;
   };
 
   computerContainer.addEventListener('click', playerMove);

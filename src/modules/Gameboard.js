@@ -10,6 +10,8 @@ class Gameboard {
     this.ships = [];
 
     this.missedAttacks = [];
+
+    this.numberOfShips = this.ships.length;
   }
 
   placeShip(ship, row, col) {
@@ -96,6 +98,18 @@ class Gameboard {
 
   allShipsSunk() {
     return this.ships.every((ship) => ship.isSunk());
+  }
+
+  amountOfShipsSunk() {
+    this.numberOfShips = this.ships.length;
+
+    for (let i = 0; i < this.ships.length; i += 1) {
+      if (this.ships[i].isSunk()) {
+        this.numberOfShips -= 1;
+      }
+    }
+
+    return this.numberOfShips;
   }
 }
 
