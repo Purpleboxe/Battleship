@@ -28,6 +28,15 @@ h1 {
     color: white;
 }
 
+#github-logo {
+    width: 30px;
+    transition: ease-in-out 0.1s;
+}
+
+#github-logo:hover {
+    width: 35px;
+}
+
 .container {
     display: flex;
     justify-content: space-evenly;
