@@ -228,3 +228,44 @@ h1 {
 .preview.placed {
     background-color: var(--show);
 }
+
+/* Adjustable screen sizes */
+
+@media only screen and (max-width: 1500px) {
+    #placeBoard {
+        width: 300px;
+        height: 300px;
+    }
+
+    #placeShip {
+        width: 400px;
+    }
+
+    #playerBoard, #computerBoard {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    #placeBoard {
+        width: 300px;
+        height: 300px;
+    }
+
+    #placeShip {
+        width: 400px;
+    }
+
+    #playerBoard, #computerBoard {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .container {
+        display: block;
+        padding: 0 5rem;
+    }
+}
