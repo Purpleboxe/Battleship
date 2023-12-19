@@ -34,7 +34,7 @@ h1 {
 }
 
 #github-logo:hover {
-    width: 35px;
+    transform: scale(1.25);
 }
 
 .container {
